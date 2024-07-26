@@ -1,0 +1,578 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Statichant</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: transparent;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: transparent;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: transparent;
+            border-radius: 4px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: transparent;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: transparent;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left img {
+            width: 90%;
+            max-height: 100%;
+            border-radius: 8px;
+            padding-left: 40px;
+            padding-top: 40px;
+            padding-right: 40px; 
+        }
+        .right {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: transparent;
+        }
+        .right h1 {
+            margin-bottom: 20px;
+            font-size: 60px;
+            text-align: left;
+        }
+        .right p {
+            margin-bottom: 20px;
+            text-align: left;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+        .right .email-container {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            width: 100%;
+            height: 50px;
+            margin-bottom: 20px;
+            shape-outside: ellipse();
+        }
+        .right input[type="email"] {
+            padding: 10px;
+            font-size: 14px;
+            width: 70%;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            align-self: left;
+        }
+        .right button {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #ffcc00;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .right button:hover {
+            background-color: #ffbf00;
+        }
+        .latest-work {
+            padding: 40px;
+            text-align: center;
+        }
+        .latest-work h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .latest-work p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        
+        }
+
+        .card {
+            width: calc(33.333% - 40px);
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s;
+            
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+        }
+        
+
+
+        .see-all {
+            margin-top: 40px;
+        }
+        .see-all button{
+            padding: 10px 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            background-color:white;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        
+        .see-all button:hover {
+            background-color: #ffbf00;
+        }
+
+
+        .show-more {
+            margin-top: 40px;
+        }
+        .show-more button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffcc00;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .Recent-posts h1{
+            font-size: 35px;
+
+        }
+     
+
+        .Recent-posts p {
+            font-size: 20px;
+            padding: bottom 10px; ;
+
+        }
+
+
+        
+        .show-more button:hover {
+            background-color: #ffbf00;
+        }
+        
+        .testimonial-section {
+            padding: 40px;
+            text-align: center;
+        }
+        .testimonial-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .testimonial-card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: calc(33.333% - 40px);
+        }
+        .testimonial-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .testimonial-card p {
+            margin: 10px 0;
+        }
+
+        .cantact{
+
+            margin-top: 20%;
+        }
+        .contact img{
+            height: 30%;
+            width:25% ;
+            padding-top: 10%;
+           
+
+        }
+
+
+        .container2 {
+            display: flex;
+            height: 100vh;
+        }
+        .content2 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .photo-description {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .photo {
+            width: 500px;
+            height: 200px;
+            background-color: #ddd;
+            margin-right: 20px;
+        }
+        .description p {
+         font-size: 15px;
+        }
+        .social-media {
+            margin-top: 20px;
+        }
+        .social-media a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #333;
+            text-decoration: none;
+        }
+        .navbar2 {
+            
+            
+            padding-bottom:35%;
+            padding-left:30%;
+        }
+        .navbar2 ul {
+            list-style-type: none;
+            
+        }
+        
+        .navbar2 a {
+            text-decoration: none;
+            color: #333;
+        }
+    
+
+        
+</style>
+<script src="scripts.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Statichant</h1>
+        <nav>
+            <a href="homepage.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="blog.html">Blog</a>
+            <div class="dropdown">
+                <a href="#">Pages</a>
+                <div class="dropdown-content">
+                    <a href="contact.html">Contact</a>
+                    <a href="about.html">About</a>
+            ................................................        <a href="elements.html">Element</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="left">
+            <img src="image/monica1.jpg" alt="Monica">
+        </div>
+        <div class="right">
+            <h1>I am Sara. I will <br> create designs that <br> can give you value</h1>
+            <p>So, if you're looking for designs that have a high visual impact on <br>your target audience, while also aligning with your brand, let's talk <br> about your project in more detail.</p>
+            <div class="email-container">
+                <input type="email" placeholder="Enter email for more updates">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </div>
+    <section class="latest-work">
+        <h2>Latest Work</h2>
+        <p>Check out some of my latest design projects.</p>
+        <div class="card-container">
+            <a href="project1.html" class="card">
+                <img src="image/work1.jpg" alt="Project 1">
+                <div class="card-content">
+                    <h3 align="center">Script Using Pencil</h3>
+                    <p align="center">CALLIGRAPHY</p>
+                </div>
+            </a>
+            <a href="project2.html" class="card">
+                <img src="image/work2.jpg" alt="Project 2">
+                <div class="card-content">
+                    <h3 align="center">How We Live</h3>
+                    <p align="center">LETTERING</p>
+                </div>
+            </a>
+            <a href="project3.html" class="card">
+                <img src="image/work3.jpg" alt="Project 3">
+                <div class="card-content">
+                    <h3 align="center">Be Water My Friends</h3>
+                    <p align="center">QUOTES</p>
+                </div>
+            </a>
+            <a href="project4.html" class="card">
+                <img src="image/work4.jpg" alt="Project 4">
+                <div class="card-content">
+                    <h3 align="center">Make you jealous</h3>
+                    <p align="center">LETTERING</p>
+                </div>
+            </a>
+            <a href="project5.html" class="card">
+                <img src="image/work5.jpg" alt="Project 5">
+                <div class="card-content">
+                    <h3 align="center">The best sentence</h3>
+                    <p align="center">LETTERING</p>
+                </div>
+            </a>
+            <a href="project6.html" class="card">
+                <img src="image/work6.jpg" alt="Project 6">
+                <div class="card-content">
+                    <h3 align="center">Ride my bike</h3>
+                    <p align="center">PROCREATE</p>
+                </div>
+            </a>
+        </div>
+        <div class="show-more">
+            <button onclick="window.location.href='projects.html'">Show More</button>
+        </div>
+    </section>
+    <section class="testimonial-section">
+        <h2>What Client Says</h2>
+        <div class="testimonial-card-container">
+            <div class="testimonial-card">
+                <img src="image/client-1.jpg" alt="Client 1">
+                <p>Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="image/client-2.jpg" alt="Client 2">
+               <p> Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="image/client-3.jpg" alt="Client 3">
+                <h1>Duke</h1>
+                <h6>Lettering Artist</h6>
+                <p> Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="image/client-4.jpg" alt="Client 4">
+                <h1>Sayem</h1>
+                <h6>Lettering Artist</h6>
+                <p> Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="image/client-5.jpg" alt="Client 5">
+                <h1>Robin</h1>
+                <h6>Artist</h6>
+                <p> Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="image/client-6.jpg" alt="Client 6">
+                <h1>Sami</h1>
+                <h6>Developer</h6>
+                <p> Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="image/client-4.jpg" alt="Client 7">
+                <h1>Ray</h1>
+                <h6>Lettering Artist</h6>
+                <p> Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="image/client-2.jpg" alt="Client 8">
+                <h1>Meyya</h1>
+                <h6>Lettering Artist</h6>
+                <p> Keeping your eye on the ball while performing a deep dive on the start-up <br>mentality to derive convergence on <br>cross-platform integration</p>
+            </div>
+        </div>
+    </section>
+
+    <br>
+
+    <section class="Recent-posts">
+        <h1 align ="center">Recent Posts</h1>
+        <p align="center">Catch up with the latest articles and updates</p>
+        <div class="card-container">
+            <a href="page1.html" class="card">
+                <img src="image/RECENTPOSTS1.jpg" alt="Project 1">
+                <div  class ="see-all">
+                    <button onclick="window.location.href='projects.html'">Life</button>
+                    <button onclick="window.location.href='projects.html'">Live</button>
+                    <button onclick="window.location.href='projects.html'">Nature</button>
+                    </div>
+              <div  class ="card-content">
+                <h4> Monica 2017</h4>
+                    <h3 align="left">That which does not kill us make us stronger</h3>
+                    <p align="left">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that. Capitalize on low hanging fruit to identify a ballpark value activity to beta test. Override the digital  divide with additional.</p>
+                </div>
+            </a>
+
+            
+                <a href="page2.html" class="card">
+                    <img src="image/Recentpost2.jpg" alt="Project 1">
+                    <div  class ="see-all">
+                    <button onclick="window.location.href='projects.html'">Lifestyle</button>
+                    <button onclick="window.location.href='projects.html'">Rest</button>
+                
+                    <button onclick="window.location.href='projects.html'">Notes</button>
+                    </div>
+
+                    <div class="card-content">
+                        <h4>Monica 2018</h4>
+                        <h3 align="left"> Do what you can with what you have , where you are.</h3>
+                        <p align="left">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that. Capitalize on low hanging fruit to identify a ballpark value,activity to beta test. Override the digital  divide with additional.</p>
+                    </div>
+                </a>
+            
+                    <a href="page3.html" class="card">
+                        <img src="image/Recentpost2.jpg" alt="Project 1">
+                        <div  class ="see-all">
+                            <button onclick="window.location.href='projects.html'">Life</button>
+                            <button onclick="window.location.href='projects.html'">Live</button>
+                            <button onclick="window.location.href='projects.html'">Nature</button>
+                            
+                            </div>
+                            
+                        <div class="card-content">
+                            <h4>Monica 2018</h4>
+                            <h3 align="left">if you cant do great things do small things in great way</h3>
+                            <p align="left">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that. Capitalize  on low hanging fruit to identify a ballpark value activity to beta test. Override the digital  divide with additional.</p>
+                        </div>
+                    </a>
+                </div>
+
+    </section>
+
+
+
+        <secion class =" contact">
+    
+
+<img src = "image/gallery.jpg" alt="image"><img src = "image/gallery2.jpg" alt="image"><img src = "image/gallery.jpg" alt="image"><img src = "image/gallery2.jpg" alt="image">
+
+
+
+        
+
+    <div class="container2">
+        <div class="content2">
+            <div class="photo-description">
+                <div class="photo">
+                
+                    <img src="image/monica.jpg" alt="Small photo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="description">
+
+                    <h2> Monica Hilton </h2>
+                    <p> So, If you're looking for designs that have  a high visual impact on your target audience, while also aligning with your brand, Let's talk about your project in more detail.</p>
+                </div>
+            </div>
+            <div class="social-media">
+                <a href="instagram.com"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <nav class="navbar2">
+            
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                 <br>
+                <li><a href="projects.html">Projects</a></li>
+                <br>
+                <li><a href="Blog.html">Blog</a></li>
+                <br>
+                <li><a href="Elements.html">Elements</a></li>
+            </ul>
+        </nav>
+    </div>
+        </secion>
+        <footer>
+            <p>&copy; 2024 My Website</p>
+        </footer>
+</body>
+</html>
+
